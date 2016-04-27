@@ -11,6 +11,7 @@ namespace YieldKeywordSample
         static void Main(string[] args)
         {
             int count = 0;
+
             foreach (var item in MyFiboIterator())
             {
                 if (count++ > 10)
@@ -19,8 +20,14 @@ namespace YieldKeywordSample
                 }
                 Console.WriteLine(item);
             }
-           
-            Console.WriteLine(ComputeFibo(10));
+
+
+            foreach (var item in MyFruitIterator())
+            {
+                Console.WriteLine($"I like {item}");
+            }
+
+            Console.ReadLine();
         }
 
         /// <summary>
@@ -44,7 +51,21 @@ namespace YieldKeywordSample
             for (int i = 0; i < int.MaxValue; i++)
             {
                 yield return ComputeFibo(i);
+
+                // we could break early if we want
+                // if (i > 5)
+                    // yield break;
             }
+        }
+
+
+        static IEnumerable<string> MyFruitIterator()
+        {
+            yield return "Apple";
+            yield return "Banana";
+            yield return "Citron";
+            yield return "Date";
+            yield return "Eggplant";
         }
     }
 }
